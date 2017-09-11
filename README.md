@@ -1,8 +1,8 @@
-###简介
+### 简介
 
 关于Demo的介绍可以参考[RESTful登录设计（基于Spring及Redis的Token鉴权）][1]
 
-###演示方式
+### 演示方式
 
  1. 下载该项目并修改application.properties文件，将MySQL和Redis的信息修改为自己的配置
  2. 打开init.sql文件，将其中的sql语句在MySQL中运行
@@ -11,7 +11,7 @@
  5. 演示登录：在该页面打开POST tokens/，在username项输入admin、password项输入password，点击Try it out！，查看返回结果得到userId和token
  6. 演示退出登录：在该页面打开DELETE tokens/，在authorization中填写用userId和token以"_"拼接得到的字符串，点击Try it out！，如果返回码为200则成功。重复一次操作，返回码将变为401
 
-###可能会遇到的问题：
+### 可能会遇到的问题：
 
 **java.lang.ClassNotFoundException: org.jboss.jandex.IndexView**
 
@@ -27,7 +27,7 @@
 
 感谢@yrain的反馈！
 
-###其他
+### 其他
 
 如果这个Demo的功能刚好可以满足你的需求，在这里推荐我根据其封装的库：[Spring Authorization Manager][2]，希望能帮助你完成API服务端的身份验证功能。
 
