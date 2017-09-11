@@ -28,7 +28,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        //如果参数类型是User并且有CurrentUser注解则支持
+        /* 如果参数类型是User并且有CurrentUser注解则支持 */
         if (parameter.getParameterType().isAssignableFrom(User.class) &&
                 parameter.hasParameterAnnotation(CurrentUser.class)) {
             return true;
@@ -38,10 +38,10 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        //取出鉴权时存入的登录用户Id
+        /* 取出鉴权时存入的登录用户Id */
         Long currentUserId = (Long) webRequest.getAttribute(Constants.CURRENT_USER_ID, RequestAttributes.SCOPE_REQUEST);
         if (currentUserId != null) {
-            //从数据库中查询并返回
+            /* 从数据库中查询并返回 */
             return userRepository.findOne(currentUserId);
         }
         throw new MissingServletRequestPartException(Constants.CURRENT_USER_ID);

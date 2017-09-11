@@ -46,7 +46,7 @@ public class RedisTokenManager implements TokenManager {
         if (param.length != 2) {
             return null;
         }
-        //使用userId和源token简单拼接成的token，可以增加加密措施
+        /* 使用userId和源token简单拼接成的token，可以增加加密措施 */
         long userId = Long.parseLong(param[0]);
         String token = param[1];
         return new TokenModel(userId, token);
@@ -60,7 +60,7 @@ public class RedisTokenManager implements TokenManager {
         if (token == null || !token.equals(model.getToken())) {
             return false;
         }
-        //如果验证成功，说明此用户进行了一次有效操作，延长token的过期时间
+        /* 如果验证成功，说明此用户进行了一次有效操作，延长token的过期时间 */
         redis.boundValueOps(model.getUserId()).expire(Constants.TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
         return true;
     }

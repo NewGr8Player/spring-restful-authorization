@@ -42,12 +42,12 @@ public class TokenController {
         Assert.notNull(password, "password can not be empty");
 
         User user = userRepository.findByUsername(username);
-        if (user == null ||  //未注册
-                !user.getPassword().equals(password)) {  //密码错误
-            //提示用户名或密码错误
+        if (user == null ||  /* 未注册 */
+                !user.getPassword().equals(password)) {  /* 密码错误 */
+            /* 提示用户名或密码错误 */
             return new ResponseEntity<>(ResultModel.error(ResultStatus.USERNAME_OR_PASSWORD_ERROR), HttpStatus.NOT_FOUND);
         }
-        //生成一个token，保存用户登录状态
+        /* 生成一个token，保存用户登录状态 */
         TokenModel model = tokenManager.createToken(user.getId());
         return new ResponseEntity<>(ResultModel.ok(model), HttpStatus.OK);
     }
