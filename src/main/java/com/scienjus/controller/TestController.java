@@ -1,9 +1,6 @@
 package com.scienjus.controller;
 
-import com.scienjus.authorization.annotation.Authorization;
 import com.scienjus.model.ResultModel;
-import com.wordnik.swagger.annotations.ApiImplicitParam;
-import com.wordnik.swagger.annotations.ApiImplicitParams;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @RequestMapping(method = RequestMethod.POST)
-    @Authorization
     @ApiOperation(value = "测试案例")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "content", value = "内容", required = true, dataType = "string", paramType = "header")
-    })
-    public ResponseEntity<ResultModel> test(@RequestParam String content) {
-        return new ResponseEntity<>(ResultModel.ok("成功取得用户权限传入数据为：" + content), HttpStatus.OK);
+    public ResponseEntity<ResultModel> test(@RequestParam String context) {
+        return new ResponseEntity<>(ResultModel.ok("测试成功，传入值为：" + context), HttpStatus.OK);
     }
 }
