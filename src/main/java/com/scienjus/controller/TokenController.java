@@ -36,8 +36,8 @@ public class TokenController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "登录")
     public ResponseEntity<ResultModel> login(@RequestParam String username, @RequestParam String password) {
-        Assert.notNull(username, "username can not be empty");
-        Assert.notNull(password, "password can not be empty");
+        Assert.notNull(username, "用户名不能为空");
+        Assert.notNull(password, "密码不能为空");
 
         User user = userRepository.findByUsername(username);
         if (user == null ||  /* 未注册 */
