@@ -1,16 +1,17 @@
 package com.scienjus.authorization.model;
 
 /**
- * Token的Model类，可以增加字段提高安全性，例如时间戳、url签名
+ * <p>Token的Model类，可以增加字段提高安全性，例如时间戳、url签名</p>
+ *
  * @author ScienJus
  * @date 2015/7/31.
  */
 public class TokenModel {
 
-    //用户id
+    /* 用户id */
     private String userId;
 
-    //随机生成的uuid
+    /* 随机生成的uuid */
     private String token;
 
     public TokenModel(String userId, String token) {

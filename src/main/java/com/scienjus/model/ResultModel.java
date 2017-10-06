@@ -3,8 +3,8 @@ package com.scienjus.model;
 import com.scienjus.config.ResultStatus;
 
 /**
- * 响应结果
- * */
+ * <p>响应结果</p>
+ */
 public class ResultModel {
 
     private int code; /* 返回码 */

@@ -1,7 +1,8 @@
 package com.scienjus.config;
 
 /**
- * 自定义请求状态码
+ * <p>自定义请求状态码</p>
+ *
  * @author ScienJus
  * @date 2015/7/15.
  */

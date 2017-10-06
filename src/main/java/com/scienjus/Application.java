@@ -4,7 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Spring-Boot启动类
+ * <p>Spring-Boot启动类</p>
+ *
  * @author ScienJus
  * @date 2015/7/31.
  */

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User Bean
+ * <p>User Bean</p>
  */
 @Entity
 @Table(name = "user")

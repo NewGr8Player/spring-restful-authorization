@@ -11,11 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- * 配置类，增加自定义拦截器和解析器
- * @see com.scienjus.authorization.resolvers.CurrentUserMethodArgumentResolver
- * @see com.scienjus.authorization.interceptor.AuthorizationInterceptor
+ * <p>配置类，增加自定义拦截器和解析器</p>
+ *
  * @author ScienJus
  * @date 2015/7/30.
+ * @see com.scienjus.authorization.resolvers.CurrentUserMethodArgumentResolver
+ * @see com.scienjus.authorization.interceptor.AuthorizationInterceptor
  */
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {

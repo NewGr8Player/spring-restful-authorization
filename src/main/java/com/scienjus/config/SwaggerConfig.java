@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import java.sql.Timestamp;
 
 /**
- * swagger-ui的配置
+ * <p>swagger-ui的配置</p>
  *
  * @author ScienJus
  * @date 2017/10/06
@@ -44,7 +44,7 @@ public class SwaggerConfig {
                         license,
                         licenseUrl)).
                         /* 将Timestamp类型全部转为Long类型 */
-                        directModelSubstitute(Timestamp.class, Long.class);
+                                directModelSubstitute(Timestamp.class, Long.class);
     }
 
 }

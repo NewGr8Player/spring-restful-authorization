@@ -12,10 +12,11 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 通过Redis存储和验证token的实现类
- * @see com.scienjus.authorization.manager.TokenManager
+ * <p>通过Redis存储和验证token的实现类</p>
+ *
  * @author ScienJus
  * @date 2015/7/31.
+ * @see com.scienjus.authorization.manager.TokenManager
  */
 @Component
 public class RedisTokenManager implements TokenManager {
@@ -32,10 +33,10 @@ public class RedisTokenManager implements TokenManager {
     }
 
     public TokenModel createToken(String userId) {
-        //使用uuid作为源token
+        /* 使用uuid作为源token */
         String token = UUID.randomUUID().toString().replace("-", "");
         TokenModel model = new TokenModel(userId, token);
-        //存储到redis并设置过期时间
+        /* 存储到redis并设置过期时间 */
         redis.boundValueOps(userId).set(token, Constants.TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
         return model;
     }
