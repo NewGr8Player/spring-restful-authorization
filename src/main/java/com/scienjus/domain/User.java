@@ -6,27 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 用户数据的domain类
- * @author ScienJus
- * @date 2015/7/31.
+ * User Bean
  */
 @Entity
 @Table(name = "user")
 public class User {
-    //用户名
+    @Id
+    @Column(name = "id")
+    private String id;
+
     @Column(name = "username")
     private String username;
 
-    //密码
     @Column(name = "password")
     private String password;
 
-    //用户id
-    @Id
-    @Column(name = "id")
-    private long id;
-
-    //昵称
     @Column(name = "nickname")
     private String nickname;
 
@@ -46,11 +40,11 @@ public class User {
         this.password = password;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

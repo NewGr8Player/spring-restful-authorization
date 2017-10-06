@@ -14,7 +14,7 @@ public interface TokenManager {
      * @param userId 指定用户的id
      * @return 生成的token
      */
-    public TokenModel createToken(long userId);
+    public TokenModel createToken(String userId);
 
     /**
      * 检查token是否有效
@@ -34,6 +34,6 @@ public interface TokenManager {
      * 清除token
      * @param userId 登录用户的id
      */
-    public void deleteToken(long userId);
+    public void deleteToken(String userId);
 
 }

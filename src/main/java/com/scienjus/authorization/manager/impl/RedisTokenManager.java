@@ -5,7 +5,7 @@ import com.scienjus.authorization.model.TokenModel;
 import com.scienjus.config.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -20,16 +20,18 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisTokenManager implements TokenManager {
 
-    private RedisTemplate<Long, String> redis;
+    private RedisTemplate<String, String> redis;
 
     @Autowired
     public void setRedis(RedisTemplate redis) {
         this.redis = redis;
-        //泛型设置成Long后必须更改对应的序列化方案
-        redis.setKeySerializer(new JdkSerializationRedisSerializer());
+        /* 使用String的序列化方法 */
+        redis.setKeySerializer(new StringRedisSerializer());
+        /* 改变为Long类型之后必须更换序列化方法 */
+        //redis.setKeySerializer(new JdkSerializationRedisSerializer());
     }
 
-    public TokenModel createToken(long userId) {
+    public TokenModel createToken(String userId) {
         //使用uuid作为源token
         String token = UUID.randomUUID().toString().replace("-", "");
         TokenModel model = new TokenModel(userId, token);
@@ -47,7 +49,7 @@ public class RedisTokenManager implements TokenManager {
             return null;
         }
         /* 使用userId和源token简单拼接成的token，可以增加加密措施 */
-        long userId = Long.parseLong(param[0]);
+        String userId = param[0];
         String token = param[1];
         return new TokenModel(userId, token);
     }
@@ -65,7 +67,7 @@ public class RedisTokenManager implements TokenManager {
         return true;
     }
 
-    public void deleteToken(long userId) {
+    public void deleteToken(String userId) {
         redis.delete(userId);
     }
 }

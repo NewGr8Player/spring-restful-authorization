@@ -2,27 +2,13 @@ package com.scienjus.model;
 
 import com.scienjus.config.ResultStatus;
 
-/**
- * 自定义返回结果
- * @author XieEnlong
- * @date 2015/7/14.
- */
 public class ResultModel {
 
-    /**
-     * 返回码
-     */
-    private int code;
+    private int code; /* 返回码 */
 
-    /**
-     * 返回结果描述
-     */
-    private String message;
+    private String message; /* 返回结果描述 */
 
-    /**
-     * 返回内容
-     */
-    private Object content;
+    private Object content; /* 返回内容 */
 
     public int getCode() {
         return code;
