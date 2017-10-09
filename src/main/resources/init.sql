@@ -6,4 +6,4 @@ CREATE TABLE user (
   PRIMARY KEY (id)
 );
 
-INSERT INTO user (username, password, nickname) VALUES ('1', 'admin', 'password', 'admin');
+INSERT INTO user (id, username, password, nickname) VALUES ('1', 'admin', 'password', 'admin');
