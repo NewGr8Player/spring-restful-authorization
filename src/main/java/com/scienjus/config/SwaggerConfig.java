@@ -42,9 +42,9 @@ public class SwaggerConfig {
                         termsOfServiceUrl,
                         contact,
                         license,
-                        licenseUrl)).
+                        licenseUrl))
                         /* 将Timestamp类型全部转为Long类型 */
-                                directModelSubstitute(Timestamp.class, Long.class);
+                                .directModelSubstitute(Timestamp.class, Long.class);
     }
 
 }

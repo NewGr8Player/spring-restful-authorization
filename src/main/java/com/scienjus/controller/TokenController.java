@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p>获取和删除token的请求地址，在Restful设计中其实就对应着登录和退出登录的资源映射</p>
  */
 @RestController
-@RequestMapping("/tokens")
+@RequestMapping("/login")
 public class TokenController {
 
     @Autowired
