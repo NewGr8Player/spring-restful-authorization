@@ -1,7 +1,6 @@
 package com.scienjus.controller;
 
 import com.scienjus.authorization.annotation.Authorization;
-import com.scienjus.authorization.annotation.CurrentUser;
 import com.scienjus.authorization.manager.TokenManager;
 import com.scienjus.authorization.model.TokenModel;
 import com.scienjus.config.ResultStatus;
@@ -11,6 +10,7 @@ import com.scienjus.repository.UserRepository;
 import com.wordnik.swagger.annotations.ApiImplicitParam;
 import com.wordnik.swagger.annotations.ApiImplicitParams;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,8 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "登录")
-    public ResponseEntity<ResultModel> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<ResultModel> login(@RequestParam @ApiParam(name = "username", value = "用户名", required = true) String username,
+                                             @RequestParam @ApiParam(name = "password", value = "密码", required = true) String password) {
         Assert.notNull(username, "用户名不能为空");
         Assert.notNull(password, "密码不能为空");
 
@@ -52,13 +53,21 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @Authorization
-    @ApiOperation(value = "退出登录")
+    @ApiOperation(value = "退出登录", notes = "用户退出登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = "authorization", value = "权限Token串", required = true, dataType = "string", paramType = "header"),
     })
-    public ResponseEntity<ResultModel> logout(@CurrentUser User user) {
-        tokenManager.deleteToken(user.getId());
-        return new ResponseEntity<>(ResultModel.ok(), HttpStatus.OK);
+    public ResponseEntity<ResultModel> logout(@RequestParam @ApiParam(name = "username", value = "用户名", required = true) String username) {
+        Assert.notNull(username, "用户名不能为空");
+
+        User user = userRepository.findByUsername(username);
+        if (user == null) {  /* 未注册 */
+            return new ResponseEntity<>(ResultModel.error(ResultStatus.USER_NOT_FOUND), HttpStatus.NOT_FOUND);
+        } else { /* 退出登录 */
+            tokenManager.deleteToken(user.getId());
+            return new ResponseEntity<>(ResultModel.ok(), HttpStatus.OK);
+        }
+
     }
 
 }
